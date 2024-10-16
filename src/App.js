@@ -25,28 +25,55 @@ function App() {
     <div className='app'>
       <div className='sidebar'>
         <FriendsList />
+        <FormAddFriend />
+        <Button>Add Friend</Button>
       </div>
     </div>
   )
 }
 
 function FriendsList() {
-  const friends=initialFriends;
+  const friends = initialFriends;
 
   return (
-      <ul>
-        {friends.map(friend=> <Friend friend={friend} key={friend.id} />)}
-      </ul>
+    <ul>
+      {friends.map(friend => <Friend friend={friend} key={friend.id} />)}
+    </ul>
   )
 }
 
-function Friend({friend}){
-  return(
+function Friend({ friend }) {
+  return (
     <li>
       <img src={friend.image} alt='hello' />
       <h3>{friend.name}</h3>
+      {friend.balance < 0 && <p className='red'>You Owe {friend.name} {Math.abs(friend.balance)}$ </p>}
+
+      {friend.balance > 0 && <p className='green'>{friend.name} Owes You {Math.abs(friend.balance)}$ </p>}
+
+      {friend.balance === 0 && <p >You And {friend.name} Are even {Math.abs(friend.balance)}$ </p>}
+      <Button>Select</Button>
     </li>
   )
 }
 
+function FormAddFriend(){
+  return(
+    <form className='form-add-friend'>
+      <label>🧙‍♂️friend Name</label>
+      <input type='text' />
+
+      <label>✈️Image URL</label>
+      <input type='text' />
+      <Button>Add</Button>
+    </form>
+  )
+}
+
+
+function Button({children}){
+  return(
+    <button className='button'>{children}</button>
+  )
+}
 export default App
