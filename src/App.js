@@ -64,67 +64,67 @@ function App() {
   )
 }
 
-function FriendsList({ friends, onSelection, selectedFriend }) {
+// function FriendsList({ friends, onSelection, selectedFriend }) {
 
-  return (
-    <ul>
-      {friends.map(friend => <Friend onSelection={onSelection} friend={friend} key={friend.id} selectedFriend={selectedFriend} />)}
-    </ul>
-  )
-}
+//   return (
+//     <ul>
+//       {friends.map(friend => <Friend onSelection={onSelection} friend={friend} key={friend.id} selectedFriend={selectedFriend} />)}
+//     </ul>
+//   )
+// }
 
-function Friend({ friend, onSelection, selectedFriend }) {
+// function Friend({ friend, onSelection, selectedFriend }) {
 
-  const isSelected = selectedFriend && selectedFriend.id === friend.id;
-  return (
-    <li className={isSelected ? 'selected' : ''}>
-      <img src={friend.image} alt='hello' />
-      <h3>{friend.name}</h3>
-      {friend.balance < 0 && <p className='red'>You Owe {friend.name} {Math.abs(friend.balance)}$ </p>}
+//   const isSelected = selectedFriend && selectedFriend.id === friend.id;
+//   return (
+//     <li className={isSelected ? 'selected' : ''}>
+//       <img src={friend.image} alt='hello' />
+//       <h3>{friend.name}</h3>
+//       {friend.balance < 0 && <p className='red'>You Owe {friend.name} {Math.abs(friend.balance)}$ </p>}
 
-      {friend.balance > 0 && <p className='green'>{friend.name} Owes You {Math.abs(friend.balance)}$ </p>}
+//       {friend.balance > 0 && <p className='green'>{friend.name} Owes You {Math.abs(friend.balance)}$ </p>}
 
-      {friend.balance === 0 && <p >You And {friend.name} Are even {Math.abs(friend.balance)}$ </p>}
-      <Button onClick={() => onSelection(friend)}>{isSelected ? 'Close' : 'Select'}</Button>
-    </li>
-  )
-}
+//       {friend.balance === 0 && <p >You And {friend.name} Are even {Math.abs(friend.balance)}$ </p>}
+//       <Button onClick={() => onSelection(friend)}>{isSelected ? 'Close' : 'Select'}</Button>
+//     </li>
+//   )
+// }
 
-function FormAddFriend({ onAddFriend }) {
+// function FormAddFriend({ onAddFriend }) {
 
-  const [name, setName] = useState('');
-  const [image, setImage] = useState('https://i.pravatar.cc/48');
+//   const [name, setName] = useState('');
+//   const [image, setImage] = useState('https://i.pravatar.cc/48');
 
-  function handleSubmit(event) {
-    event.preventDefault();
+//   function handleSubmit(event) {
+//     event.preventDefault();
 
-    if (!name || !image) return
+//     if (!name || !image) return
 
-    const id = crypto.randomUUID();
+//     const id = crypto.randomUUID();
 
-    const newFriend = {
-      id,
-      name,
-      image: `${image}?=${id}`,
-      balance: 0,
-    };
-    onAddFriend(newFriend)
+//     const newFriend = {
+//       id,
+//       name,
+//       image: `${image}?=${id}`,
+//       balance: 0,
+//     };
+//     onAddFriend(newFriend)
 
-    setName('')
-    setImage('https://i.pravatar.cc/48')
-  }
+//     setName('')
+//     setImage('https://i.pravatar.cc/48')
+//   }
 
-  return (
-    <form className='form-add-friend' onSubmit={handleSubmit}>
-      <label>🧙‍♂️friend Name</label>
-      <input type='text' value={name} onChange={e => setName(e.target.value)} />
+//   return (
+//     <form className='form-add-friend' onSubmit={handleSubmit}>
+//       <label>🧙‍♂️friend Name</label>
+//       <input type='text' value={name} onChange={e => setName(e.target.value)} />
 
-      <label>✈️Image URL</label>
-      <input type='text' value={image} onChange={e => setImage(e.target.value)} />
-      <Button>Add</Button>
-    </form>
-  )
-}
+//       <label>✈️Image URL</label>
+//       <input type='text' value={image} onChange={e => setImage(e.target.value)} />
+//       <Button>Add</Button>
+//     </form>
+//   )
+// }
 
 function FormSplitBill({ selectedFriend, onSplitBill }) {
 
